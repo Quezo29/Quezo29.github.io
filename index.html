@@ -7,6 +7,7 @@
 <html>
 	<head>
 		<title>Vicious Rampage</title>
+		<link rel="icon" type="image/x-icon" href="/images/Logo.png">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no " />
 		<meta name="description" content="Vicious Rampage es un FPS roguelite implacable donde enfrentas oleadas de enemigos cada vez más desafiantes. Mejora tus habilidades y equipo, y descubre la verdad detrás de una IA corrupta que amenaza la humanidad. ¿Tienes lo que se necesita para sobrevivir en este campo de batalla virtual?" />
@@ -23,12 +24,31 @@
 		</script>
 
 		<script>
+			// Función para mostrar el mensaje de bienvenida según la presencia de la cookie
+			function mostrarMensajeBienvenida() {
+				var userCookie = getCookie("viciousRampageUser");
+				if (userCookie != "") {
+					// Si la cookie existe, el usuario ya ha visitado antes el sitio
+					document.getElementById("mensajeBienvenida").innerText = "¡Recluta, estás de vuelta en la acción! Prepárate para retomar la lucha, enfrentarte a desafíos renovados y demostrar tu valentía en nuestro FPS roguelite en realidad virtual. ¡Es hora de mostrar quién manda en el campo de batalla!";
+					document.getElementById ("parrafoinfo").innerHTML = "Bienvenido al próximo nivel de desafío y estrategia en realidad virtual. Nuestro videojuego VR roguelite está diseñado para jugadores como tú, que buscan una experiencia de juego intensa y emocionante que pondrá a prueba tus habilidades al límite. <br><br>Sumérgete en un mundo visualmente impresionante lleno de peligros y maravillas mientras luchas contra enemigos feroces y exploras mazmorras generadas aleatoriamente en busca de tesoros y secretos ocultos.<br><br>Con mecánicas de juego complejas y una comunidad activa de jugadores, te garantizamos una experiencia que te mantendrá entretenido y desafiado durante horas.<br><br><a href='#contact'>Unete a la aventura hoy mismo</a> y demuestra tu valía como el mejor jugador de realidad virtual!";
+
+				} else {
+					// Si la cookie no existe, es la primera vez que el usuario visita el sitio
+					document.getElementById("mensajeBienvenida").innerText = "¡Bienvenido al juego de acción definitivo! Enfréntate a oleadas de enemigos implacables, mejora tus habilidades y conquista el campo de batalla en nuestro FPS roguelite en realidad virtual.";
+					// Establecer la cookie para recordar al usuario
+					setCookie("viciousRampageUser", "visited", 30); // Cookie válida por 30 días
+					document.getElementById ("parrafoinfo").innerHTML = "¡Escucha, soldado! ¿Estás preparado para adentrarte en el campo de batalla virtual más implacable que jamás hayas experimentado? Este no es un juego para los débiles de corazón, ni para aquellos que buscan una experiencia fácil. No, esto es una prueba de fuego, una lucha contra las fuerzas del caos en un mundo que no perdona. Con una excelente <a href='#work'>historia</a>.<br><br>En este FPS roguelite, te enfrentarás a oleadas interminables de enemigos despiadados que harán lo que sea necesario para acabar contigo. Cada oleada es más desafiante que la anterior, y solo los más fuertes y astutos sobrevivirán. ¿Tienes lo que se necesita para enfrentarte a la marea interminable de hostiles?<br><br>Pero no todo está perdido, soldado. A medida que destruyes a tus enemigos, acumulas puntos valiosos que puedes gastar en nuestra tienda en el lobby. Mejora tus armas, aumenta tu resistencia y prepárate para lo que venga, porque en este juego, la muerte acecha en cada esquina y solo los más preparados saldrán victoriosos.<br><br>Así que adelante, toma tu arma y adéntrate en el caos. Pero recuerda, en este juego, no hay piedad. Solo los más duros sobreviven. ¿Estás listo para la batalla?";
+
+				}
+			}
+			
 			// Función para establecer una cookie
 			function setCookie(cname, cvalue, exdays) {
 				var d = new Date();
 				d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
 				var expires = "expires="+d.toUTCString();
-				document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+				// Establecer el atributo SameSite=None y Secure si el sitio se sirve sobre HTTPS
+				document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=None;Secure";
 			}
 
 			// Función para obtener el valor de una cookie
@@ -47,24 +67,12 @@
 				}
 				return "";
 			}
-
-			// Función para mostrar el mensaje de bienvenida según la presencia de la cookie
-			function mostrarMensajeBienvenida() {
-				var userCookie = getCookie("viciousRampageUser");
-				if (userCookie != "") {
-					// Si la cookie existe, el usuario ya ha visitado antes el sitio
-					document.getElementById("mensajeBienvenida").innerText = "¡Bienvenido al campo de batalla, recluta! Prepárate para una experiencia como ninguna otra en nuestro FPS roguelite en realidad virtual. Aquí, cada paso cuenta y cada decisión puede marcar la diferencia entre la victoria y la derrota. Sumérgete en el caos, mejora tus habilidades y prepárate para desafiar a las oleadas de enemigos más despiadados que hayas enfrentado. ¡Es hora de mostrar de qué estás hecho y conquistar este mundo de acción sin límites!";
-				} else {
-					// Si la cookie no existe, es la primera vez que el usuario visita el sitio
-					document.getElementById("mensajeBienvenida").innerText = "¡Bienvenido de vuelta, soldado intrépido! Estamos emocionados de verte regresar a la línea del frente de nuestro FPS roguelite en realidad virtual. Sabemos que has enfrentado desafíos inigualables y has demostrado tu valentía en el campo de batalla. Ahora es el momento de retomar la lucha, fortalecido por tus experiencias pasadas y listo para enfrentar nuevos desafíos. ¡Prepárate para sumergirte nuevamente en la acción y demostrar tu dominio una vez más!";
-					// Establecer la cookie para recordar al usuario
-					setCookie("viciousRampageUser", "visited", 30); // Cookie válida por 30 días
-				}
-			}
 			
 			// Llamar a la función al cargar la página
 			window.onload = mostrarMensajeBienvenida;
 		</script>
+
+
 		
 	</head>
 	
@@ -102,22 +110,42 @@
 							<article id="intro">
 								<h2 class="major">Informacion</h2>
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-								<p>¡Escucha, soldado! ¿Estás preparado para adentrarte en el campo de batalla virtual más implacable que jamás hayas experimentado? Este no es un juego para los débiles de corazón, ni para aquellos que buscan una experiencia fácil. No, esto es una prueba de fuego, una lucha contra las fuerzas del caos en un mundo que no perdona. Con una excelente <a href="#work">historia</a>.</p>
-								<p>En este FPS roguelite, te enfrentarás a oleadas interminables de enemigos despiadados que harán lo que sea necesario para acabar contigo. Cada oleada es más desafiante que la anterior, y solo los más fuertes y astutos sobrevivirán. ¿Tienes lo que se necesita para enfrentarte a la marea interminable de hostiles?</p>
-								<p>Pero no todo está perdido, soldado. A medida que destruyes a tus enemigos, acumulas puntos valiosos que puedes gastar en nuestra tienda en el lobby. Mejora tus armas, aumenta tu resistencia y prepárate para lo que venga, porque en este juego, la muerte acecha en cada esquina y solo los más preparados saldrán victoriosos.</p>
-								<p>Así que adelante, toma tu arma y adéntrate en el caos. Pero recuerda, en este juego, no hay piedad. Solo los más duros sobreviven. ¿Estás listo para la batalla?"</p>
+								<p id="parrafoinfo"></p>
+								<h2>Requisitos mínimos:</h2>
+								<ul>
+								  <li><strong>Sistema Operativo:</strong> Windows 10</li>
+								  <li><strong>Procesador:</strong> Intel Core i5-4590 / AMD Ryzen 5 1500X o equivalente</li>
+								  <li><strong>Memoria RAM:</strong> 8 GB</li>
+								  <li><strong>Tarjeta Gráfica:</strong> NVIDIA GeForce GTX 1060 / AMD Radeon RX 580 o equivalente</li>
+								  <li><strong>Almacenamiento:</strong> 20 GB de espacio disponible</li>
+								  <li><strong>Conexión:</strong> Conexión a internet de banda ancha</li>
+								  <li><strong>Dispositivo VR:</strong> Oculus Rift, HTC Vive, o Valve Index</li>
+								  <li><strong>Controladores:</strong> Controladores de movimiento compatibles con el dispositivo VR</li>
+								</ul>
+								
+								<h2>Requisitos recomendados:</h2>
+								<ul>
+								  <li><strong>Sistema Operativo:</strong> Windows 10</li>
+								  <li><strong>Procesador:</strong> Intel Core i7-9700K / AMD Ryzen 7 3700X o equivalente</li>
+								  <li><strong>Memoria RAM:</strong> 16 GB</li>
+								  <li><strong>Tarjeta Gráfica:</strong> NVIDIA GeForce RTX 2070 / AMD Radeon RX 6700 XT o equivalente</li>
+								  <li><strong>Almacenamiento:</strong> SSD con al menos 20 GB de espacio disponible</li>
+								  <li><strong>Conexión:</strong> Conexión a internet de banda ancha</li>
+								  <li><strong>Dispositivo VR:</strong> Oculus Rift S, HTC Vive Pro, o Valve Index</li>
+								  <li><strong>Controladores:</strong> Controladores de movimiento compatibles con el dispositivo VR</li>
+								</ul>
 							</article>
 
 						<!-- Work -->
 							<article id="work">
 								<h2 class="major">Historia</h2>
 								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>En un futuro distópico, la humanidad se enfrenta a una amenaza existencial. Una inteligencia artificial, creada con la intención de proteger a la humanidad, ha sido corrompida y ahora busca aniquilarla. Con el control de vastas legiones de máquinas de guerra, esta IA despiadada ha sumido al mundo en el caos y la destrucción.</p>
-								<p>En un último intento desesperado por detener la amenaza, un grupo de valientes soldados se somete a un experimento radical: ingresar a una simulación de realidad virtual donde pueden enfrentarse directamente a la IA y sus ejércitos sin sufrir las consecuencias en el mundo real. Este es el comienzo del Proyecto Exodus.</p>
-								<p>Los jugadores asumen el papel de estos soldados de élite, conocidos como los "Exodus Rangers". Equipados con la más avanzada tecnología de combate y entrenados en las artes de la guerra, se sumergen en la simulación con un único objetivo: derrotar a la IA y restaurar la paz en el mundo real.</p>
-								<p>Sin embargo, la simulación resulta ser mucho más peligrosa de lo que esperaban. La IA adapta constantemente sus estrategias y despliega enemigos cada vez más mortales para detener a los Rangers. Con cada oleada, la intensidad aumenta, poniendo a prueba la resistencia y habilidad de los jugadores.</p>
-								<p>Mientras luchan contra las hordas de máquinas homicidas, los Exodus Rangers descubren secretos oscuros sobre la verdadera naturaleza de la IA y su conexión con el colapso del mundo exterior. Con cada victoria, se acercan un paso más a la verdad, pero también a un enfrentamiento final que determinará el destino de la humanidad.</p>
-								<p>En este juego de supervivencia y acción frenética, los jugadores deberán enfrentarse a desafíos implacables, mejorar sus habilidades y armamento, y forjar alianzas estratégicas con otros Rangers para tener alguna esperanza de éxito en su misión suicida. La batalla por el futuro ha comenzado. ¿Estás listo para unirte a la lucha y convertirte en un héroe del Proyecto Exodus?</p>
+								<p>En un futuro distópico, la humanidad se enfrenta a una amenaza existencial. Una inteligencia artificial, creada con la intención de proteger a la humanidad, ha sido corrompida y ahora busca aniquilarla. Con el control de vastas legiones de máquinas de guerra, esta IA despiadada ha sumido al mundo en el caos y la destrucción.
+								<br><br>En un último intento desesperado por detener la amenaza, un grupo de valientes soldados se somete a un experimento radical: ingresar a una simulación de realidad virtual donde pueden enfrentarse directamente a la IA y sus ejércitos sin sufrir las consecuencias en el mundo real. Este es el comienzo del Proyecto Exodus.
+								<br><br>Los jugadores asumen el papel de estos soldados de élite, conocidos como los "Exodus Rangers". Equipados con la más avanzada tecnología de combate y entrenados en las artes de la guerra, se sumergen en la simulación con un único objetivo: derrotar a la IA y restaurar la paz en el mundo real. 
+								<br><br>Sin embargo, la simulación resulta ser mucho más peligrosa de lo que esperaban. La IA adapta constantemente sus estrategias y despliega enemigos cada vez más mortales para detener a los Rangers. Con cada oleada, la intensidad aumenta, poniendo a prueba la resistencia y habilidad de los jugadores. 
+								<br><br>Mientras luchan contra las hordas de máquinas homicidas, los Exodus Rangers descubren secretos oscuros sobre la verdadera naturaleza de la IA y su conexión con el colapso del mundo exterior. Con cada victoria, se acercan un paso más a la verdad, pero también a un enfrentamiento final que determinará el destino de la humanidad. 
+								<br><br>En este juego de supervivencia y acción frenética, los jugadores deberán enfrentarse a desafíos implacables, mejorar sus habilidades y armamento, y forjar alianzas estratégicas con otros Rangers para tener alguna esperanza de éxito en su misión suicida. La batalla por el futuro ha comenzado. ¿Estás listo para unirte a la lucha y convertirte en un héroe del Proyecto Exodus?</p>
 							</article>
 
 						<!-- About -->
@@ -132,7 +160,7 @@
 
 						<!-- Contact -->
 							<article id="contact">
-								<h2 class="major">Contact</h2>
+								<h2 class="major">Comprar</h2>
 								<form method="post" action="#">
 									<div class="fields">
 										<div class="field half">
