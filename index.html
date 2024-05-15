@@ -8,7 +8,7 @@
 	<head>
 		<title>Vicious Rampage</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no " />
 		<meta name="description" content="Vicious Rampage es un FPS roguelite implacable donde enfrentas oleadas de enemigos cada vez más desafiantes. Mejora tus habilidades y equipo, y descubre la verdad detrás de una IA corrupta que amenaza la humanidad. ¿Tienes lo que se necesita para sobrevivir en este campo de batalla virtual?" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
@@ -22,40 +22,50 @@
 			gtag('config', 'G-DWP6GD9CHY');
 		</script>
 
-	<script>
-		window.onload = function() {
-			// Verificar si la cookie existe
-			var visit = getCookie("visit");
-
-			// Si la cookie no existe, es la primera visita
-			if (visit === "") {
-				// Mostrar mensaje de introducción
-				document.getElementById("inner").p = "¡Bienvenido por primera vez!";
-				// Crear la cookie para indicar que el usuario ha visitado el sitio
-				document.cookie = "visit=1; expires=Thu, 31 Dec 2026 12:00:00 UTC; path=/";
-			} else {
-				// Mostrar mensaje para usuarios que ya han visitado
-				document.getElementById("inner").p = "¡Bienvenido de nuevo!";
+		<script>
+			// Función para establecer una cookie
+			function setCookie(cname, cvalue, exdays) {
+				var d = new Date();
+				d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+				var expires = "expires="+d.toUTCString();
+				document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 			}
-		};
 
-		// Función para obtener el valor de una cookie por su nombre
-		function getCookie(name) {
-			var nameEQ = name + "=";
-			var cookies = document.cookie.split(';');
-			for(var i = 0; i < cookies.length; i++) {
-				var cookie = cookies[i];
-				while (cookie.charAt(0) == ' ') {
-					cookie = cookie.substring(1, cookie.length);
+			// Función para obtener el valor de una cookie
+			function getCookie(cname) {
+				var name = cname + "=";
+				var decodedCookie = decodeURIComponent(document.cookie);
+				var ca = decodedCookie.split(';');
+				for(var i = 0; i <ca.length; i++) {
+					var c = ca[i];
+					while (c.charAt(0) == ' ') {
+						c = c.substring(1);
+					}
+					if (c.indexOf(name) == 0) {
+						return c.substring(name.length, c.length);
+					}
 				}
-				if (cookie.indexOf(nameEQ) == 0) {
-					return cookie.substring(nameEQ.length, cookie.length);
+				return "";
+			}
+
+			// Función para mostrar el mensaje de bienvenida según la presencia de la cookie
+			function mostrarMensajeBienvenida() {
+				var userCookie = getCookie("viciousRampageUser");
+				if (userCookie != "") {
+					// Si la cookie existe, el usuario ya ha visitado antes el sitio
+					document.getElementById("mensajeBienvenida").innerText = "Bienvenido de nuevo a Vicious Rampage. Destruye, elimina, avanza, reinicia.";
+				} else {
+					// Si la cookie no existe, es la primera vez que el usuario visita el sitio
+					document.getElementById("mensajeBienvenida").innerText = "¡Bienvenido a Vicious Rampage! Prepárate para adentrarte en el campo de batalla virtual más implacable que jamás hayas experimentado.";
+					// Establecer la cookie para recordar al usuario
+					setCookie("viciousRampageUser", "visited", 30); // Cookie válida por 30 días
 				}
 			}
-			return "";
-		}
-	</script>
-
+			
+			// Llamar a la función al cargar la página
+			window.onload = mostrarMensajeBienvenida;
+		</script>
+		
 	</head>
 	
 	<body class="is-preload">
@@ -71,8 +81,7 @@
 						<div class="content">
 							<div class="inner">
 								<h1>Vicious Rampage</h1>
-								<p>Destruye, elimina, avanza, reinicia.  <a href="https://html5up.net">Vicious Rampage&trade;</a> es el juego<br />
-								donde mientras mas avanzas mas fuerte eres</p>
+								<p id="mensajeBienvenida">Mensaje de bienvenida</p>
 							</div>
 						</div>
 						<nav>
