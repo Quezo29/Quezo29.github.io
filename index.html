@@ -53,10 +53,10 @@
 				var userCookie = getCookie("viciousRampageUser");
 				if (userCookie != "") {
 					// Si la cookie existe, el usuario ya ha visitado antes el sitio
-					document.getElementById("mensajeBienvenida").innerText = "Bienvenido de nuevo a Vicious Rampage. Destruye, elimina, avanza, reinicia.";
+					document.getElementById("mensajeBienvenida").innerText = "¡Bienvenido al campo de batalla, recluta! Prepárate para una experiencia como ninguna otra en nuestro FPS roguelite en realidad virtual. Aquí, cada paso cuenta y cada decisión puede marcar la diferencia entre la victoria y la derrota. Sumérgete en el caos, mejora tus habilidades y prepárate para desafiar a las oleadas de enemigos más despiadados que hayas enfrentado. ¡Es hora de mostrar de qué estás hecho y conquistar este mundo de acción sin límites!";
 				} else {
 					// Si la cookie no existe, es la primera vez que el usuario visita el sitio
-					document.getElementById("mensajeBienvenida").innerText = "¡Bienvenido a Vicious Rampage! Prepárate para adentrarte en el campo de batalla virtual más implacable que jamás hayas experimentado.";
+					document.getElementById("mensajeBienvenida").innerText = "¡Bienvenido de vuelta, soldado intrépido! Estamos emocionados de verte regresar a la línea del frente de nuestro FPS roguelite en realidad virtual. Sabemos que has enfrentado desafíos inigualables y has demostrado tu valentía en el campo de batalla. Ahora es el momento de retomar la lucha, fortalecido por tus experiencias pasadas y listo para enfrentar nuevos desafíos. ¡Prepárate para sumergirte nuevamente en la acción y demostrar tu dominio una vez más!";
 					// Establecer la cookie para recordar al usuario
 					setCookie("viciousRampageUser", "visited", 30); // Cookie válida por 30 días
 				}
