@@ -21,6 +21,41 @@
 
 			gtag('config', 'G-DWP6GD9CHY');
 		</script>
+
+	<script>
+		window.onload = function() {
+			// Verificar si la cookie existe
+			var visit = getCookie("visit");
+
+			// Si la cookie no existe, es la primera visita
+			if (visit === "") {
+				// Mostrar mensaje de introducción
+				document.getElementById("inner").innerText = "¡Bienvenido por primera vez!";
+				// Crear la cookie para indicar que el usuario ha visitado el sitio
+				document.cookie = "visit=1; expires=Thu, 31 Dec 2026 12:00:00 UTC; path=/";
+			} else {
+				// Mostrar mensaje para usuarios que ya han visitado
+				document.getElementById("inner").innerText = "¡Bienvenido de nuevo!";
+			}
+		};
+
+		// Función para obtener el valor de una cookie por su nombre
+		function getCookie(name) {
+			var nameEQ = name + "=";
+			var cookies = document.cookie.split(';');
+			for(var i = 0; i < cookies.length; i++) {
+				var cookie = cookies[i];
+				while (cookie.charAt(0) == ' ') {
+					cookie = cookie.substring(1, cookie.length);
+				}
+				if (cookie.indexOf(nameEQ) == 0) {
+					return cookie.substring(nameEQ.length, cookie.length);
+				}
+			}
+			return "";
+		}
+	</script>
+
 	</head>
 	
 	<body class="is-preload">
